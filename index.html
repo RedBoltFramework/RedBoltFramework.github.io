@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RedBolt samples</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_framework/dotnet.rdugwo35lo.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-MRJ3qBP5XjufAIDUkTgrFpiHX3QKTnPXPPF0g/07nK4=" />
+  <script type="importmap">{
+  "imports": {
+    "./_framework/dotnet.native.js": "./_framework/dotnet.native.d2xanfth4k.js",
+    "./_framework/dotnet.native.worker.mjs": "./_framework/dotnet.native.worker.js3jwk4n4d.mjs",
+    "./_framework/dotnet.js": "./_framework/dotnet.rdugwo35lo.js",
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.web2r9gqbh.js"
+  },
+  "scopes": {},
+  "integrity": {
+    "./_framework/dotnet.js": "sha256-MRJ3qBP5XjufAIDUkTgrFpiHX3QKTnPXPPF0g/07nK4=",
+    "./_framework/dotnet.native.d2xanfth4k.js": "sha256-5eiv8o5aIzJgDlG/PO9dy0j/ZLu35pWtew8zDcrkLM4=",
+    "./_framework/dotnet.native.js": "sha256-5eiv8o5aIzJgDlG/PO9dy0j/ZLu35pWtew8zDcrkLM4=",
+    "./_framework/dotnet.native.worker.js3jwk4n4d.mjs": "sha256-84ki+f6o7pozgI1jUX5IYUYo9jtJrhxplA9PxXnmqYU=",
+    "./_framework/dotnet.native.worker.mjs": "sha256-84ki+f6o7pozgI1jUX5IYUYo9jtJrhxplA9PxXnmqYU=",
+    "./_framework/dotnet.rdugwo35lo.js": "sha256-MRJ3qBP5XjufAIDUkTgrFpiHX3QKTnPXPPF0g/07nK4=",
+    "./_framework/dotnet.runtime.js": "sha256-SOUHEQ3FhDAibBSR2u90NWZpoBjPuWRmH0BAATUlhJU=",
+    "./_framework/dotnet.runtime.web2r9gqbh.js": "sha256-SOUHEQ3FhDAibBSR2u90NWZpoBjPuWRmH0BAATUlhJU="
+  }
+}</script>
+  <script type="module" src="main.js"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: system-ui, sans-serif;
+      background: #11151c;
+      color: #edf2f7;
+    }
+    html, body { margin: 0; padding: 0; overflow: hidden; }
+    main { min-height: 100vh; display: grid; place-items: center; }
+    section { width: min(32rem, calc(100vw - 3rem)); }
+    select, button {
+      box-sizing: border-box;
+      width: 100%;
+      margin-top: 0.75rem;
+      padding: 0.8rem;
+      font: inherit;
+    }
+    button { cursor: pointer; }
+    #runner { display: none; width: 100vw; height: 100vh; }
+    #runner.active { display: block; }
+    #runner header {
+      position: fixed;
+      z-index: 1;
+      padding: 0.6rem 0.8rem;
+      background: rgb(17 21 28 / 80%);
+    }
+    #runner a { color: #9dc8ff; }
+    #canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #000;
+      border: none;
+      cursor: default !important;
+    }
+    #loading {
+      position: fixed;
+      z-index: 2;
+      inset: 0;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      background: #11151c;
+    }
+    #loading[hidden] { display: none; }
+    #progress { margin-top: 0.5rem; }
+    #fullscreen-button {
+      position: fixed;
+      z-index: 2;
+      width: 2rem;
+      height: 2rem;
+      left: 50%;
+      top: 4px;
+      transform: translateX(-50%);
+      padding: 0;
+      margin: 0;
+      stroke: #999;
+      stroke-width: 10px;
+      background: transparent;
+      border: 0;
+    }
+    #fullscreen-button:hover { fill: #999; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <main>
+    <section id="selector">
+      <h1>RedBolt samples</h1>
+      <p>Choose a sample to load in WebAssembly.</p>
+      <select id="sample" aria-label="Sample">
+        <option value="advanced-ui" data-application="RedBolt.Sample.AdvancedUI.AdvancedUIApplication">Advanced UI</option>
+        <option value="aggregated-input" data-application="RedBolt.Sample.AggregatedInput.AggregatedInputApplication">Aggregated Input</option>
+        <option value="actions" data-application="RedBolt.Sample.Actions.ActionsApplication">Actions</option>
+        <option value="animating-scene" data-application="RedBolt.Sample.AnimatingScene.AnimatingScene">Animating Scene</option>
+        <option value="baked-lighting" data-application="RedBolt.Sample.BakedLighting.BakedLighting">Baked Lighting</option>
+        <option value="billboards" data-application="RedBolt.Sample.Billboards.BillboardsApplication">Billboards</option>
+        <option value="camera-operator" data-application="RedBolt.Sample.CameraOperator.CameraOperatorSampleApplication">Camera Operator</option>
+        <option value="camera-shake" data-application="RedBolt.Sample.CameraShake.CameraShakeApplication">Camera Shake</option>
+        <option value="crowd-navigation" data-application="RedBolt.Sample.CrowdNavigation.CrowdNavigationSample">Crowd Navigation</option>
+        <option value="decals" data-application="RedBolt.Sample.Decals.DecalsApplication">Decals</option>
+        <option value="dynamic-geometry" data-application="RedBolt.Sample.DynamicGeometry.DynamicGeometry">Dynamic Geometry</option>
+        <option value="hello-gui" data-application="RedBolt.Sample.HelloGUI.HelloGUI">Hello GUI</option>
+        <option value="hello-rmlui" data-application="RedBolt.Sample.HelloRmlUI.HelloRmlUI">Hello RmlUI</option>
+        <option value="hello-world" data-application="RedBolt.Sample.HelloWorld.HelloWorld">Hello World</option>
+        <option value="huge-object-count" data-application="RedBolt.Sample.HugeObjectCount.HugeObjectCountApplication">Huge Object Count</option>
+        <option value="input-logger" data-application="RedBolt.Sample.InputLogger.InputLoggerApplication">Input Logger</option>
+        <option value="inverse-kinematics" data-application="RedBolt.Sample.InverseKinematics.InverseKinematicsApplication">Inverse Kinematics</option>
+        <option value="light-animation" data-application="RedBolt.Sample.LightAnimation.LightAnimationApplication">Light Animation</option>
+        <option value="material-animation" data-application="RedBolt.Sample.MaterialAnimation.MaterialAnimationApplication">Material Animation</option>
+        <option value="multiple-viewports" data-application="RedBolt.Sample.MultipleViewports.MultipleViewports">Multiple Viewports</option>
+        <option value="navigation" data-application="RedBolt.Sample.Navigation.NavigationSample">Navigation</option>
+        <option value="particles" data-application="RedBolt.Sample.Particles.ParticlesApplication">Particles</option>
+        <option value="physics" data-application="RedBolt.Sample.Physics.PhysicsSample">Physics</option>
+        <option value="pointer-adapter" data-application="RedBolt.Sample.PointerAdapter.PointerAdapterApplication">Pointer Adapter</option>
+        <option value="render-to-texture" data-application="RedBolt.Sample.RenderToTexture.RenderToTexture">Render to Texture</option>
+        <option value="skeletal-animation" data-application="RedBolt.Sample.SkeletalAnimation.SkeletalAnimationApplication">Skeletal Animation</option>
+        <option value="sound-effects" data-application="RedBolt.Sample.SoundEffects.SoundEffects">Sound Effects</option>
+        <option value="sound-synthesis" data-application="RedBolt.Sample.SoundSynthesis.SoundSynthesis">Sound Synthesis</option>
+        <option value="static-scene" data-application="RedBolt.Sample.StaticScene.StaticScene">Static Scene</option>
+        <option value="texture-formats" data-application="RedBolt.Sample.TextureFormats.TextureFormatsSample">Texture Formats</option>
+        <option value="virtual-file-system" data-application="RedBolt.Sample.VirtualFileSystem.VirtualFileSystemApplication">Virtual File System</option>
+        <!--<option value="window-settings" data-application="RedBolt.Sample.WindowSettings.WindowSettingsDemo">Window Settings</option>-->
+      </select>
+      <button id="load" type="button">Load sample</button>
+    </section>
+    <section id="runner">
+      <header>
+        <a href="./">All samples</a>
+        <span id="result" data-status="loading">Loading…</span>
+      </header>
+      <canvas id="canvas" tabindex="-1"></canvas>
+      <div id="loading">
+        <div id="status">Downloading...</div>
+        <progress hidden id="progress" max="100" value="10"></progress>
+      </div>
+      <button id="fullscreen-button" type="button" aria-label="Toggle fullscreen" hidden>
+        <svg viewBox="0 0 512 512" aria-hidden="true">
+          <path d="M93.1,139.6l46.5-46.5L93.1,46.5L139.6,0H0v139.6l46.5-46.5L93.1,139.6z M93.1,372.4l-46.5,46.5L0,372.4V512h139.6l-46.5-46.5l46.5-46.5L93.1,372.4z M372.4,139.6H139.6v232.7h232.7V139.6z M325.8,325.8H186.2V186.2h139.6V325.8z M372.4,0l46.5,46.5l-46.5,46.5l46.5,46.5l46.5-46.5l46.5,46.5V0H372.4z M418.9,372.4l-46.5,46.5l46.5,46.5L372.4,512H512V372.4l-46.5,46.5L418.9,372.4z"/>
+        </svg>
+      </button>
+    </section>
+  </main>
+</body>
+</html>
