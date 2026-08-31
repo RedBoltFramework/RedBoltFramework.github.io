@@ -1,0 +1,115 @@
+name: Publish Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out monorepo helper
+        uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/monorepo
+          path: workspace
+
+      - name: Check out core
+        uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/RedBolt
+          path: workspace/RedBolt
+
+      - name: Check out website
+        uses: actions/checkout@v7
+        with:
+          path: workspace/RedBoltFramework.github.io
+
+      - name: Check out sample modules
+        uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/RedBolt.2D
+          path: workspace/RedBolt.2D
+
+      - uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/RedBolt.Actions
+          path: workspace/RedBolt.Actions
+
+      - uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/RedBolt.CSG
+          path: workspace/RedBolt.CSG
+
+      - uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/RedBolt.IK
+          path: workspace/RedBolt.IK
+
+      - uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/RedBolt.Navigation
+          path: workspace/RedBolt.Navigation
+
+      - uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/RedBolt.Network
+          path: workspace/RedBolt.Network
+
+      - uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/RedBolt.Particles
+          path: workspace/RedBolt.Particles
+
+      - uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/RedBolt.PhysicsBox2D
+          path: workspace/RedBolt.PhysicsBox2D
+
+      - uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/RedBolt.PhysicsJolt
+          path: workspace/RedBolt.PhysicsJolt
+
+      - uses: actions/checkout@v7
+        with:
+          repository: RedBoltFramework/RedBolt.RmlUI
+          path: workspace/RedBolt.RmlUI
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Install WebAssembly workload
+        run: dotnet workload install wasm-tools
+
+      - name: Use HTTPS for public GitHub dependencies
+        run: 'git config --global url."https://github.com/".insteadOf git@github.com:'
+
+      - name: Build site
+        working-directory: workspace
+        run: ./monorepo.cs publish-samples --build --build-config Release
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: workspace/RedBoltFramework.github.io
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

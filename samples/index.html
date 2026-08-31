@@ -1,0 +1,234 @@
+<!--
+Copyright (c) 2026 RedBolt and contributors.
+This work is licensed under the terms of the MIT license.
+For a copy, see <https://opensource.org/licenses/MIT> or the accompanying LICENSE file.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <redbolt-generated name="web-title"> -->
+  <title>RedBolt all samples</title>
+  <!-- </redbolt-generated name="web-title"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_framework/dotnet.vwnb5vyanj.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-MRFcZ/D5ldK7MsCxPXQRUIkT3fzoAP+ff7sO7SAK8pw=" />
+  <script type="importmap">{
+  "imports": {
+    "./_framework/dotnet.native.js": "./_framework/dotnet.native.lndwkq9nt1.js",
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.web2r9gqbh.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.vwnb5vyanj.js"
+  },
+  "scopes": {},
+  "integrity": {
+    "./_framework/dotnet.js": "sha256-MRFcZ/D5ldK7MsCxPXQRUIkT3fzoAP+ff7sO7SAK8pw=",
+    "./_framework/dotnet.native.js": "sha256-IZn8ULNe6JhbHzTtP70cjb5q5UYELklGAX2dagGhAeE=",
+    "./_framework/dotnet.native.lndwkq9nt1.js": "sha256-IZn8ULNe6JhbHzTtP70cjb5q5UYELklGAX2dagGhAeE=",
+    "./_framework/dotnet.runtime.js": "sha256-SOUHEQ3FhDAibBSR2u90NWZpoBjPuWRmH0BAATUlhJU=",
+    "./_framework/dotnet.runtime.web2r9gqbh.js": "sha256-SOUHEQ3FhDAibBSR2u90NWZpoBjPuWRmH0BAATUlhJU=",
+    "./_framework/dotnet.vwnb5vyanj.js": "sha256-MRFcZ/D5ldK7MsCxPXQRUIkT3fzoAP+ff7sO7SAK8pw="
+  }
+}</script>
+  <script src="error-log.js"></script>
+  <script type="module" src="main.js"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: system-ui, sans-serif;
+      background: #11151c;
+      color: #edf2f7;
+    }
+    html, body { margin: 0; padding: 0; overflow: hidden; }
+    main { min-height: 100vh; display: grid; place-items: center; }
+    section { width: min(32rem, calc(100vw - 3rem)); }
+    select, button {
+      box-sizing: border-box;
+      width: 100%;
+      margin-top: 0.75rem;
+      padding: 0.8rem;
+      font: inherit;
+    }
+    button { cursor: pointer; }
+    #runner { display: none; width: 100vw; height: 100vh; }
+    #runner.active { display: block; }
+    #runner header {
+      position: fixed;
+      z-index: 1;
+      padding: 0.6rem 0.8rem;
+      background: rgb(17 21 28 / 80%);
+    }
+    #runner a { color: #9dc8ff; }
+    #canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #000;
+      border: none;
+      cursor: default !important;
+      touch-action: none;
+    }
+    #loading {
+      position: fixed;
+      z-index: 2;
+      inset: 0;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      background: #11151c;
+    }
+    #loading[hidden] { display: none; }
+    #progress { margin-top: 0.5rem; }
+    #fullscreen-button {
+      position: fixed;
+      z-index: 2;
+      width: 2rem;
+      height: 2rem;
+      left: 50%;
+      top: 4px;
+      transform: translateX(-50%);
+      padding: 0;
+      margin: 0;
+      stroke: #999;
+      stroke-width: 10px;
+      background: transparent;
+      border: 0;
+    }
+    #fullscreen-button:hover { fill: #999; cursor: pointer; }
+    #diagnostics {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem;
+      background: rgb(10 12 17 / 96%);
+      color: #edf2f7;
+    }
+    #diagnostics[hidden] { display: none; }
+    #diagnostics.collapsed {
+      inset: auto 0 0;
+      padding: 0.5rem;
+    }
+    #diagnostics-toolbar {
+      display: flex;
+      flex: none;
+      gap: 0.5rem;
+    }
+    #diagnostics-toolbar button {
+      width: auto;
+      min-width: 0;
+      margin: 0;
+      padding: 0.65rem;
+    }
+    #diagnostics-log {
+      flex: 1;
+      min-height: 0;
+      margin: 0.75rem 0 0;
+      padding: 0.75rem;
+      overflow: auto;
+      overscroll-behavior: contain;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      background: #05070a;
+      border: 1px solid #3c4657;
+      color: #edf2f7;
+      font: 0.75rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace;
+      user-select: text;
+      -webkit-user-select: text;
+    }
+    #diagnostics.collapsed #diagnostics-log { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <section id="selector">
+      <!-- <redbolt-generated name="web-heading"> -->
+      <h1>RedBolt all samples</h1>
+      <!-- </redbolt-generated name="web-heading"> -->
+      <p>Choose a sample to load in WebAssembly.</p>
+      <select id="sample" aria-label="Sample">
+        <!-- <redbolt-generated name="web-sample-options"> -->
+        <option value="actions:actions" data-application="RedBolt.Sample.Actions.ActionsApplication">Actions</option>
+        <option value="physics-jolt:advanced-networking" data-application="RedBolt.Sample.AdvancedNetworking.AdvancedNetworking">Advanced Networking</option>
+        <option value="rmlui:advanced-ui" data-application="RedBolt.Sample.AdvancedUI.AdvancedUIApplication">Advanced UI</option>
+        <option value="redbolt:aggregated-input" data-application="RedBolt.Sample.AggregatedInput.AggregatedInputApplication">Aggregated Input</option>
+        <option value="redbolt:animating-scene" data-application="RedBolt.Sample.AnimatingScene.AnimatingScene">Animating Scene</option>
+        <option value="glow:baked-lighting" data-application="RedBolt.Sample.BakedLighting.BakedLighting">Baked Lighting</option>
+        <option value="redbolt:billboards" data-application="RedBolt.Sample.Billboards.BillboardsApplication">Billboards</option>
+        <option value="redbolt:camera-operator" data-application="RedBolt.Sample.CameraOperator.CameraOperatorSampleApplication">Camera Operator</option>
+        <option value="redbolt:camera-shake" data-application="RedBolt.Sample.CameraShake.CameraShakeApplication">Camera Shake</option>
+        <option value="physics-jolt:character-demo" data-application="RedBolt.Sample.CharacterDemo.CharacterDemo">Character Demo</option>
+        <option value="network:chat" data-application="RedBolt.Sample.Chat.Chat">Chat</option>
+        <option value="csg:csg" data-application="RedBolt.Sample.CSG.CsgShowcase">Constructive Solid Geometry</option>
+        <option value="navigation:crowd-navigation" data-application="RedBolt.Sample.CrowdNavigation.CrowdNavigationSample">Crowd Navigation</option>
+        <option value="redbolt:decals" data-application="RedBolt.Sample.Decals.DecalsApplication">Decals</option>
+        <option value="redbolt:dynamic-geometry" data-application="RedBolt.Sample.DynamicGeometry.DynamicGeometry">Dynamic Geometry</option>
+        <option value="redbolt:hello-gui" data-application="RedBolt.Sample.HelloGUI.HelloGUI">Hello GUI</option>
+        <option value="rmlui:hello-rmlui" data-application="RedBolt.Sample.HelloRmlUI.HelloRmlUI">Hello RmlUI</option>
+        <option value="redbolt:hello-world" data-application="RedBolt.Sample.HelloWorld.HelloWorld">Hello World</option>
+        <option value="network:http-request" data-application="RedBolt.Sample.HttpRequestDemo.HttpRequestDemo">HTTP Request</option>
+        <option value="redbolt:huge-object-count" data-application="RedBolt.Sample.HugeObjectCount.HugeObjectCountApplication">Huge Object Count</option>
+        <option value="redbolt:input-logger" data-application="RedBolt.Sample.InputLogger.InputLoggerApplication">Input Logger</option>
+        <option value="ik:inverse-kinematics" data-application="RedBolt.Sample.InverseKinematics.InverseKinematicsApplication">Inverse Kinematics</option>
+        <option value="physics-jolt:kinematic-character" data-application="RedBolt.Sample.KinematicCharacter.KinematicCharacterDemo">Kinematic Character</option>
+        <option value="network:lan-discovery" data-application="RedBolt.Sample.LANDiscovery.LANDiscovery">LAN Discovery</option>
+        <option value="redbolt:light-animation" data-application="RedBolt.Sample.LightAnimation.LightAnimationApplication">Light Animation</option>
+        <option value="redbolt:material-animation" data-application="RedBolt.Sample.MaterialAnimation.MaterialAnimationApplication">Material Animation</option>
+        <option value="redbolt:multiple-viewports" data-application="RedBolt.Sample.MultipleViewports.MultipleViewports">Multiple Viewports</option>
+        <option value="navigation:navigation" data-application="RedBolt.Sample.Navigation.NavigationSample">Navigation</option>
+        <option value="particles:particles" data-application="RedBolt.Sample.Particles.ParticlesApplication">Particles</option>
+        <option value="physics-jolt:physics" data-application="RedBolt.Sample.Physics.PhysicsSample">Physics</option>
+        <option value="physics-box2d:physics2d" data-application="RedBolt.Sample.Physics2D.Physics2D">Physics2D</option>
+        <option value="physics-box2d:physics2d-constraints" data-application="RedBolt.Sample.Physics2DConstraints.Physics2DConstraints">Physics2D Constraints</option>
+        <option value="physics-box2d:physics2d-rope" data-application="RedBolt.Sample.Physics2DRope.Physics2DRope">Physics2D Rope</option>
+        <option value="redbolt:pointer-adapter" data-application="RedBolt.Sample.PointerAdapter.PointerAdapterApplication">Pointer Adapter</option>
+        <option value="physics-jolt:raycast-vehicle" data-application="RedBolt.Sample.RaycastVehicle.RaycastVehicleDemo">Raycast Vehicle</option>
+        <option value="redbolt:render-to-texture" data-application="RedBolt.Sample.RenderToTexture.RenderToTexture">Render to Texture</option>
+        <option value="physics-jolt:scene-replication" data-application="RedBolt.Sample.SceneReplication.SceneReplication">Scene Replication</option>
+        <option value="redbolt:skeletal-animation" data-application="RedBolt.Sample.SkeletalAnimation.SkeletalAnimationApplication">Skeletal Animation</option>
+        <option value="redbolt:sound-effects" data-application="RedBolt.Sample.SoundEffects.SoundEffects">Sound Effects</option>
+        <option value="redbolt:sound-synthesis" data-application="RedBolt.Sample.SoundSynthesis.SoundSynthesis">Sound Synthesis</option>
+        <option value="redbolt:static-scene" data-application="RedBolt.Sample.StaticScene.StaticScene">Static Scene</option>
+        <option value="redbolt:texture-formats" data-application="RedBolt.Sample.TextureFormats.TextureFormatsSample">Texture Formats</option>
+        <option value="physics-box2d:urho2d-isometric-demo" data-application="RedBolt.Sample.Urho2DIsometricDemo.Urho2DIsometricDemo">Urho2D Isometric Demo</option>
+        <option value="2d:urho2d-particle" data-application="RedBolt.Sample.Urho2DParticle.Urho2DParticle">Urho2D Particle</option>
+        <option value="physics-box2d:urho2d-platformer" data-application="RedBolt.Sample.Urho2DPlatformer.Urho2DPlatformer">Urho2D Platformer</option>
+        <option value="2d:urho2d-sprite" data-application="RedBolt.Sample.Urho2DSprite.Urho2DSprite">Urho2D Sprite</option>
+        <option value="2d:urho2d-spriter-animation" data-application="RedBolt.Sample.Urho2DSpriterAnimation.Urho2DSpriterAnimation">Urho2D Spriter Animation</option>
+        <option value="2d:urho2d-stretchable-sprite" data-application="RedBolt.Sample.Urho2DStretchableSprite.Urho2DStretchableSprite">Urho2D Stretchable Sprite</option>
+        <option value="2d:urho2d-tile-map" data-application="RedBolt.Sample.Urho2DTileMap.Urho2DTileMap">Urho2D Tile Map</option>
+        <option value="redbolt:virtual-file-system" data-application="RedBolt.Sample.VirtualFileSystem.VirtualFileSystemApplication">Virtual File System</option>
+        <!-- </redbolt-generated name="web-sample-options"> -->
+      </select>
+      <button id="load" type="button">Load sample</button>
+    </section>
+    <section id="runner">
+      <!--<header>
+        <a href="./">All samples</a>
+        <span id="result" data-status="loading">Loading…</span>
+      </header>-->
+      <canvas id="canvas" tabindex="-1"></canvas>
+      <div id="loading">
+        <div id="status">Downloading...</div>
+        <progress hidden id="progress" max="100" value="10"></progress>
+      </div>
+      <button id="fullscreen-button" type="button" aria-label="Toggle fullscreen" hidden>
+        <svg viewBox="0 0 512 512" aria-hidden="true">
+          <path d="M93.1,139.6l46.5-46.5L93.1,46.5L139.6,0H0v139.6l46.5-46.5L93.1,139.6z M93.1,372.4l-46.5,46.5L0,372.4V512h139.6l-46.5-46.5l46.5-46.5L93.1,372.4z M372.4,139.6H139.6v232.7h232.7V139.6z M325.8,325.8H186.2V186.2h139.6V325.8z M372.4,0l46.5,46.5l-46.5,46.5l46.5,46.5l46.5-46.5l46.5,46.5V0H372.4z M418.9,372.4l-46.5,46.5l46.5,46.5L372.4,512H512V372.4l-46.5,46.5L418.9,372.4z"/>
+        </svg>
+      </button>
+    </section>
+  </main>
+  <aside id="diagnostics" aria-label="Diagnostics" aria-live="assertive" hidden>
+    <div id="diagnostics-toolbar">
+      <button id="diagnostics-toggle" type="button">Hide</button>
+      <button id="diagnostics-copy-all" type="button">Copy all</button>
+      <button id="diagnostics-copy-errors" type="button">Copy errors</button>
+    </div>
+    <pre id="diagnostics-log" tabindex="0"></pre>
+  </aside>
+</body>
+</html>
