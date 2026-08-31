@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RedBolt is a modular C# game framework with native performance and WebAssembly samples.">
+  <meta name="theme-color" content="#0b0b0d">
+  <title>RedBolt — Modular C# game framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#modules">Skip to modules</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="RedBolt home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M18.2 1 6 18.1h8.2L12.8 31 26 12.3h-8.5L18.2 1Z"/>
+      </svg>
+      <span>RED<span>BOLT</span></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#modules">Modules</a>
+      <a href="https://github.com/RedBoltFramework/RedBolt">Source</a>
+      <a class="nav-cta" href="https://github.com/RedBoltFramework">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Modular C# game technology</p>
+        <h1 id="hero-title"><span>Easy by default.</span><em>Flexible by design.</em></h1>
+        <p class="hero-summary">A composable game framework that pairs modern C# with native graphics, physics, audio, tooling, and first-class WebAssembly.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#modules">Explore samples <span aria-hidden="true">↓</span></a>
+          <a class="button button-secondary" href="https://github.com/RedBoltFramework/RedBolt">View source <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <dl class="hero-stats" aria-label="Project summary">
+        <div><dt id="module-count">12</dt><dd>Modules</dd></div>
+        <div><dt id="sample-count">50</dt><dd>Web samples</dd></div>
+        <div><dt>C# / C++</dt><dd>Managed + native</dd></div>
+      </dl>
+    </section>
+
+    <section class="manifesto" aria-label="Framework principles">
+      <p class="section-index">01 / FRAMEWORK</p>
+      <div>
+        <h2>One core.<br>Only what you need.</h2>
+        <p>Start with the engine, then compose focused modules for rendering, animation, navigation, networking, particles, user interfaces, and physics. Each repository stays independently buildable and versionable.</p>
+      </div>
+      <ul>
+        <li><span>01</span> Native performance</li>
+        <li><span>02</span> Modular architecture</li>
+        <li><span>03</span> Cross-platform output</li>
+      </ul>
+    </section>
+
+    <section class="catalog" id="modules" aria-labelledby="modules-title">
+      <header class="section-heading">
+        <div>
+          <p class="section-index">02 / MODULES &amp; SAMPLES</p>
+          <h2 id="modules-title">Explore the stack.</h2>
+        </div>
+        <p>Launch WebAssembly samples directly in your browser, or open each repository to inspect the implementation.</p>
+      </header>
+
+      <div class="catalog-tools">
+        <div class="filters" role="group" aria-label="Filter modules">
+          <button class="filter active" type="button" data-category="all" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-category="Core" aria-pressed="false">Core</button>
+          <button class="filter" type="button" data-category="Rendering" aria-pressed="false">Rendering</button>
+          <button class="filter" type="button" data-category="Simulation" aria-pressed="false">Simulation</button>
+          <button class="filter" type="button" data-category="Systems" aria-pressed="false">Systems</button>
+        </div>
+        <label class="search">
+          <span class="visually-hidden">Search modules and samples</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+          <input id="search" type="search" placeholder="Search the stack" autocomplete="off">
+        </label>
+      </div>
+
+      <div class="module-grid" id="module-grid" aria-live="polite">
+        <p class="catalog-loading">Loading module catalog…</p>
+      </div>
+      <p class="empty-state" id="empty-state" hidden>No modules match this search.</p>
+    </section>
+
+    <section class="platforms" aria-labelledby="platforms-title">
+      <div>
+        <p class="section-index">03 / TARGETS</p>
+        <h2 id="platforms-title">Ship beyond<br>the desktop.</h2>
+      </div>
+      <div class="platform-list">
+        <article><span>LIN</span><h3>Linux</h3><p>Native desktop builds with Vulkan and OpenGL.</p></article>
+        <article><span>WIN</span><h3>Windows</h3><p>Cross-compiled native desktop applications.</p></article>
+        <article><span>WEB</span><h3>WebAssembly</h3><p>Full engine samples running inside the browser.</p></article>
+        <article><span>AND</span><h3>Android</h3><p>Native mobile output for x64 and arm64 devices.</p></article>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="eyebrow"><span></span> Open source. Built in the open.</p>
+      <h2>Ready to strike?</h2>
+      <a class="button button-primary" href="https://github.com/RedBoltFramework/RedBolt">Start with RedBolt <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="./">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.2 1 6 18.1h8.2L12.8 31 26 12.3h-8.5L18.2 1Z"/></svg>
+      <span>RED<span>BOLT</span></span>
+    </a>
+    <p>A modular C# game framework.</p>
+    <p>© <span id="year"></span> RedBolt contributors</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,331 @@
+[
+  {
+    "slug": "redbolt",
+    "name": "RedBolt",
+    "category": "Core",
+    "description": "The engine core, native renderer, audio, editor, utilities, and foundational sample catalog.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt",
+    "available": true,
+    "samples": [
+      {
+        "id": "aggregated-input",
+        "name": "Aggregated Input"
+      },
+      {
+        "id": "animating-scene",
+        "name": "Animating Scene"
+      },
+      {
+        "id": "billboards",
+        "name": "Billboards"
+      },
+      {
+        "id": "camera-operator",
+        "name": "Camera Operator"
+      },
+      {
+        "id": "camera-shake",
+        "name": "Camera Shake"
+      },
+      {
+        "id": "decals",
+        "name": "Decals"
+      },
+      {
+        "id": "dynamic-geometry",
+        "name": "Dynamic Geometry"
+      },
+      {
+        "id": "hello-gui",
+        "name": "Hello GUI"
+      },
+      {
+        "id": "hello-world",
+        "name": "Hello World"
+      },
+      {
+        "id": "huge-object-count",
+        "name": "Huge Object Count"
+      },
+      {
+        "id": "input-logger",
+        "name": "Input Logger"
+      },
+      {
+        "id": "light-animation",
+        "name": "Light Animation"
+      },
+      {
+        "id": "material-animation",
+        "name": "Material Animation"
+      },
+      {
+        "id": "multiple-viewports",
+        "name": "Multiple Viewports"
+      },
+      {
+        "id": "pointer-adapter",
+        "name": "Pointer Adapter"
+      },
+      {
+        "id": "render-to-texture",
+        "name": "Render to Texture"
+      },
+      {
+        "id": "skeletal-animation",
+        "name": "Skeletal Animation"
+      },
+      {
+        "id": "sound-effects",
+        "name": "Sound Effects"
+      },
+      {
+        "id": "sound-synthesis",
+        "name": "Sound Synthesis"
+      },
+      {
+        "id": "static-scene",
+        "name": "Static Scene"
+      },
+      {
+        "id": "texture-formats",
+        "name": "Texture Formats"
+      },
+      {
+        "id": "virtual-file-system",
+        "name": "Virtual File System"
+      }
+    ]
+  },
+  {
+    "slug": "2d",
+    "name": "RedBolt.2D",
+    "category": "Rendering",
+    "description": "Sprites, particle effects, Spriter animation, stretchable sprites, and tile maps for 2D worlds.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.2D",
+    "available": true,
+    "samples": [
+      {
+        "id": "urho2d-particle",
+        "name": "Urho2D Particle"
+      },
+      {
+        "id": "urho2d-sprite",
+        "name": "Urho2D Sprite"
+      },
+      {
+        "id": "urho2d-spriter-animation",
+        "name": "Urho2D Spriter Animation"
+      },
+      {
+        "id": "urho2d-stretchable-sprite",
+        "name": "Urho2D Stretchable Sprite"
+      },
+      {
+        "id": "urho2d-tile-map",
+        "name": "Urho2D Tile Map"
+      }
+    ]
+  },
+  {
+    "slug": "actions",
+    "name": "RedBolt.Actions",
+    "category": "Systems",
+    "description": "Composable, time-based actions for sequencing movement, animation, and gameplay behavior.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.Actions",
+    "available": true,
+    "samples": [
+      {
+        "id": "actions",
+        "name": "Actions"
+      }
+    ]
+  },
+  {
+    "slug": "csg",
+    "name": "RedBolt.CSG",
+    "category": "Rendering",
+    "description": "Constructive solid geometry for building and combining procedural shapes at runtime.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.CSG",
+    "available": true,
+    "samples": [
+      {
+        "id": "csg",
+        "name": "Constructive Solid Geometry"
+      }
+    ]
+  },
+  {
+    "slug": "glow",
+    "name": "RedBolt.Glow",
+    "category": "Rendering",
+    "description": "Lightmap UV generation, baking, runtime lightmaps, probes, and editor integration.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.Glow",
+    "available": true,
+    "samples": [
+      {
+        "id": "baked-lighting",
+        "name": "Baked Lighting"
+      }
+    ]
+  },
+  {
+    "slug": "ik",
+    "name": "RedBolt.IK",
+    "category": "Simulation",
+    "description": "Runtime inverse-kinematics solvers, scene components, retargeting tools, and editor support.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.IK",
+    "available": true,
+    "samples": [
+      {
+        "id": "inverse-kinematics",
+        "name": "Inverse Kinematics"
+      }
+    ]
+  },
+  {
+    "slug": "navigation",
+    "name": "RedBolt.Navigation",
+    "category": "Simulation",
+    "description": "Recast and Detour navigation meshes, dynamic obstacles, pathfinding, and crowd simulation.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.Navigation",
+    "available": true,
+    "samples": [
+      {
+        "id": "crowd-navigation",
+        "name": "Crowd Navigation"
+      },
+      {
+        "id": "navigation",
+        "name": "Navigation"
+      }
+    ]
+  },
+  {
+    "slug": "network",
+    "name": "RedBolt.Network",
+    "category": "Systems",
+    "description": "Networking, replication, HTTP, LAN discovery, and browser-native WebRTC transports.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.Network",
+    "available": true,
+    "samples": [
+      {
+        "id": "chat",
+        "name": "Chat"
+      },
+      {
+        "id": "http-request",
+        "name": "HTTP Request"
+      },
+      {
+        "id": "lan-discovery",
+        "name": "LAN Discovery"
+      }
+    ]
+  },
+  {
+    "slug": "particles",
+    "name": "RedBolt.Particles",
+    "category": "Rendering",
+    "description": "Programmable particle graphs and emitters for scalable real-time visual effects.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.Particles",
+    "available": true,
+    "samples": [
+      {
+        "id": "particles",
+        "name": "Particles"
+      }
+    ]
+  },
+  {
+    "slug": "physics-box2d",
+    "name": "RedBolt.PhysicsBox2D",
+    "category": "Simulation",
+    "description": "Box2D 3 integration with rigid bodies, joints, constraints, ropes, and 2D platforming.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.PhysicsBox2D",
+    "available": true,
+    "samples": [
+      {
+        "id": "physics2d",
+        "name": "Physics2D"
+      },
+      {
+        "id": "physics2d-constraints",
+        "name": "Physics2D Constraints"
+      },
+      {
+        "id": "physics2d-rope",
+        "name": "Physics2D Rope"
+      },
+      {
+        "id": "urho2d-isometric-demo",
+        "name": "Urho2D Isometric Demo"
+      },
+      {
+        "id": "urho2d-platformer",
+        "name": "Urho2D Platformer"
+      }
+    ]
+  },
+  {
+    "slug": "physics-jolt",
+    "name": "RedBolt.PhysicsJolt",
+    "category": "Simulation",
+    "description": "Jolt-powered 3D physics, character controllers, vehicles, raycasts, and network integration.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.PhysicsJolt",
+    "available": true,
+    "samples": [
+      {
+        "id": "advanced-networking",
+        "name": "Advanced Networking"
+      },
+      {
+        "id": "character-demo",
+        "name": "Character Demo"
+      },
+      {
+        "id": "kinematic-character",
+        "name": "Kinematic Character"
+      },
+      {
+        "id": "physics",
+        "name": "Physics"
+      },
+      {
+        "id": "raycast-vehicle",
+        "name": "Raycast Vehicle"
+      },
+      {
+        "id": "scene-replication",
+        "name": "Scene Replication"
+      }
+    ]
+  },
+  {
+    "slug": "rmlui",
+    "name": "RedBolt.RmlUI",
+    "category": "Rendering",
+    "description": "RmlUi integration for rich HTML- and CSS-inspired game interfaces and editor extensions.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.RmlUI",
+    "available": true,
+    "samples": [
+      {
+        "id": "advanced-ui",
+        "name": "Advanced UI"
+      },
+      {
+        "id": "hello-rmlui",
+        "name": "Hello RmlUI"
+      }
+    ]
+  },
+  {
+    "slug": "xr",
+    "name": "RedBolt.XR",
+    "category": "Systems",
+    "description": "OpenXR integration with native bindings, managed VR systems, action manifests, and cross-platform XR support.",
+    "repository": "https://github.com/RedBoltFramework/RedBolt.XR",
+    "available": false,
+    "samples": []
+  }
+]
