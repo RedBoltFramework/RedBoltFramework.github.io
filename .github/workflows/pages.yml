@@ -54,6 +54,11 @@ jobs:
 
       - uses: actions/checkout@v7
         with:
+          repository: RedBoltFramework/RedBolt.Glow
+          path: workspace/RedBolt.Glow
+
+      - uses: actions/checkout@v7
+        with:
           repository: RedBoltFramework/RedBolt.IK
           path: workspace/RedBolt.IK
 
